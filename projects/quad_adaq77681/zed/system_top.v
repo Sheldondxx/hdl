@@ -35,11 +35,7 @@
 
 `timescale 1ns/100ps
 
-module system_top #(
-  parameter NUM_OF_SDIO = 4,
-  parameter NUM_OF_CS = 4,
-  parameter EN_SINGLE_CS = 0
-) (
+module system_top (
 
   inout   [14:0]  ddr_addr,
   inout   [ 2:0]  ddr_ba,
@@ -91,8 +87,8 @@ module system_top #(
 
   output                     se_spi_sdo,
   output                     se_spi_sclk,
-  input   [NUM_OF_SDIO-1:0]  se_spi_sdi,
-  output  [  NUM_OF_CS-1:0]  se_spi_cs,
+  input   [           3:0]  se_spi_sdi,
+  output  [           3:0]  se_spi_cs,
 
   input   [            3:0]  qadc_drdy,
 
@@ -120,12 +116,12 @@ module system_top #(
   wire  [           1:0]  iic_mux_sda_o_s;
   wire                    iic_mux_sda_t_s;
   wire                    out_drdy;
-  wire  [ NUM_OF_CS-1:0]  se_spi_cs_int;
+  wire  [          3:0]  se_spi_cs_int;
 
   // instantiations
   assign gpio_i[63:46] = gpio_o[63:46];
   assign gpio_i[45] = out_drdy; // gpio_and_reduce_trigger
-  assign se_spi_cs = EN_SINGLE_CS ? {NUM_OF_CS{se_spi_cs_int[0]}} : se_spi_cs_int;
+  assign se_spi_cs = se_spi_cs_int;
 
   ad_iobuf #(
     .DATA_WIDTH(13)

@@ -6,11 +6,8 @@
 source $ad_hdl_dir/library/spi_engine/scripts/spi_engine.tcl
 
 # system level parameters
-set NUM_OF_SDIO    $ad_project_params(NUM_OF_SDIO)
-set NUM_OF_CS      $ad_project_params(NUM_OF_CS)
-set EN_SINGLE_CS   $ad_project_params(EN_SINGLE_CS)
-
-puts "build parameters: NUM_OF_SDIO: $NUM_OF_SDIO"
+set NUM_OF_SDIO    4
+set NUM_OF_CS      4
 
 create_bd_intf_port -mode Master -vlnv analog.com:interface:spi_engine_rtl:1.0 quad_adaq77681_spi
 
@@ -72,12 +69,6 @@ ad_ip_parameter drdy_buf CONFIG.C_SIZE 4
 ad_connect quad_adaq77681_drdy drdy_buf/Op1
 ad_connect drdy_buf/Res $hier_spi_engine/trigger
 ad_connect drdy_buf/Res quad_adaq77681_out_drdy
-
-ad_ip_instance util_reduced_logic drdy_chk
-ad_ip_parameter drdy_chk CONFIG.C_OPERATION {xor}
-ad_ip_parameter drdy_chk CONFIG.C_SIZE 4
-
-ad_connect quad_adaq77681_drdy drdy_chk/Op1
 
 ad_cpu_interconnect 0x44a00000 $hier_spi_engine/${hier_spi_engine}_axi_regmap
 ad_cpu_interconnect 0x44a30000 axi_qadc_dma

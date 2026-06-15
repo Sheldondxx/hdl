@@ -1,12 +1,16 @@
 # QUAD-ADAQ77681 HDL Project
 
-Here are some pointers to help you:
-  * [Board Product Page](https://www.analog.com/adaq7768-1)
-  * Parts : [ADAQ7768-1: 24-Bit, 250 kSPS  Single Channel Precision μModule Data Acquisition System](https://www.analog.com/adaq7768-1)
-  * Project Doc: https://analogdevicesinc.github.io/hdl/projects/quad_adaq77681/index.html
-  * HDL Doc: https://analogdevicesinc.github.io/hdl/projects/quad_adaq77681/index.html
+- Evaluation board product page:
+  - [PMB0004](https://www.analog.com)
+- System documentation: TO BE ADDED
+- HDL project documentation: https://analogdevicesinc.github.io/hdl/projects/quad_adaq77681/index.html
+- Evaluation board VADJ range: 2.5V
 
 ## Supported parts
+
+| Part name                                      -| Description                                                                     |
+|-------------------------------------------------|---------------------------------------------------------------------------------|
+| [ADAQ7768-1](https://www.analog.com/adaq7768-1) | 24-Bit Single Channel Precision μModule Data Acquisition System                 |
 
 ## Building the project
 
